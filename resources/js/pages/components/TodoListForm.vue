@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// NEW: Todo List creation form component
 import { useForm } from '@inertiajs/vue3';
 
 interface Props {
@@ -13,12 +12,10 @@ const emit = defineEmits<{
     close: [];
 }>();
 
-// Form state using Inertia's useForm
 const form = useForm({
     list_name: '',
 });
 
-// Submit new todo list
 const submit = () => {
     form.post(`/users/${props.userId}/todolists`, {
         onSuccess: () => {

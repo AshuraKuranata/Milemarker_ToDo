@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// NEW: Todo Lists page component (SPA page for authenticated users)
 import { Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 import Navbar from './components/Navbar.vue';
@@ -13,7 +12,7 @@ interface Todo {
     task_priority: string;
     task_status: boolean;
     todo_list_id: number;
-    created_at?: string; // UPDATED: Added for sorting by created date
+    created_at?: string;
     updated_at?: string;
 }
 

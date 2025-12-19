@@ -1,16 +1,13 @@
 <script setup lang="ts">
-// NEW: Login page component
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import Navbar from '../components/Navbar.vue';
 
-// Form state using Inertia's useForm
 const form = useForm({
     email: '',
     password: '',
     remember: false,
 });
 
-// Submit login form
 const submit = () => {
     form.post('/login', {
         onFinish: () => {
@@ -32,7 +29,6 @@ const submit = () => {
             </div>
 
             <form @submit.prevent="submit" class="space-y-6">
-                <!-- Email Field -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                         Email Address
@@ -51,7 +47,6 @@ const submit = () => {
                     </div>
                 </div>
 
-                <!-- Password Field -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
                         Password
@@ -69,7 +64,6 @@ const submit = () => {
                     </div>
                 </div>
 
-                <!-- Remember Me Checkbox -->
                 <div class="flex items-center">
                     <input
                         id="remember"
@@ -82,7 +76,6 @@ const submit = () => {
                     </label>
                 </div>
 
-                <!-- Submit Button -->
                 <button
                     type="submit"
                     :disabled="form.processing"
@@ -92,7 +85,6 @@ const submit = () => {
                 </button>
             </form>
 
-            <!-- Register Link -->
             <div class="mt-6 text-center">
                 <p class="text-gray-600">
                     Don't have an account?

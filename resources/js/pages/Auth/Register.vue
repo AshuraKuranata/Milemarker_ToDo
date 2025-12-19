@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// NEW: Registration page component
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import Navbar from '../components/Navbar.vue';
 
-// Form state using Inertia's useForm
 const form = useForm({
     name: '',
     email: '',
@@ -11,7 +9,6 @@ const form = useForm({
     password_confirmation: '',
 });
 
-// Submit registration form
 const submit = () => {
     form.post('/register', {
         onFinish: () => {
@@ -33,7 +30,6 @@ const submit = () => {
             </div>
 
             <form @submit.prevent="submit" class="space-y-6">
-                <!-- Name Field -->
                 <div>
                     <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
                         Full Name
@@ -52,7 +48,6 @@ const submit = () => {
                     </div>
                 </div>
 
-                <!-- Email Field -->
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
                         Email Address
@@ -70,7 +65,6 @@ const submit = () => {
                     </div>
                 </div>
 
-                <!-- Password Field -->
                 <div>
                     <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
                         Password
@@ -88,7 +82,6 @@ const submit = () => {
                     </div>
                 </div>
 
-                <!-- Confirm Password Field -->
                 <div>
                     <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">
                         Confirm Password
@@ -103,7 +96,6 @@ const submit = () => {
                     />
                 </div>
 
-                <!-- Submit Button -->
                 <button
                     type="submit"
                     :disabled="form.processing"
@@ -113,7 +105,6 @@ const submit = () => {
                 </button>
             </form>
 
-            <!-- Login Link -->
             <div class="mt-6 text-center">
                 <p class="text-gray-600">
                     Already have an account?

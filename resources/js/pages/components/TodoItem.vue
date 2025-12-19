@@ -17,24 +17,20 @@ interface Props {
 
 defineProps<Props>();
 
-// UPDATED: Emit edit event to parent
 const emit = defineEmits<{
     edit: [todo: Todo];
 }>();
 
-// Toggle todo status
 const toggleStatus = (todoId: number) => {
     router.patch(`/todos/${todoId}/toggle`);
 };
 
-// Delete todo
 const deleteTodo = (todoId: number) => {
     if (confirm('Are you sure you want to delete this task?')) {
         router.delete(`/todos/${todoId}`);
     }
 };
 
-// Get priority color classes
 const getPriorityClasses = (priority: string) => {
     switch (priority) {
         case 'High':
@@ -48,7 +44,6 @@ const getPriorityClasses = (priority: string) => {
     }
 };
 
-// Get priority text color
 const getPriorityTextColor = (priority: string) => {
     switch (priority) {
         case 'High':
@@ -71,6 +66,7 @@ const getPriorityTextColor = (priority: string) => {
         <div class="flex justify-between items-start">
             <div class="flex-1">
                 <div class="flex items-center gap-2">
+
                     <!-- Checkbox to toggle task status -->
                     <input
                         type="checkbox"
@@ -99,22 +95,24 @@ const getPriorityTextColor = (priority: string) => {
                     {{ todo.task_status ? '✓ Complete' : 'Incomplete' }}
                 </p>
             </div>
-            <!-- UPDATED: Action buttons - Edit and Delete -->
+
+            <!-- Edit and Delete -->
             <div class="flex gap-2">
-                <!-- NEW: Edit task button -->
+
                 <button
                     @click="emit('edit', todo)"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded text-xs transition"
                 >
                     Edit
                 </button>
-                <!-- Delete task button -->
+
                 <button
                     @click="deleteTodo(todo.id)"
                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded text-xs transition"
                 >
                     Delete
                 </button>
+
             </div>
         </div>
     </div>

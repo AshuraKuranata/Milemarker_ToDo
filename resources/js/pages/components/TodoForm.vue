@@ -1,9 +1,7 @@
 <script setup lang="ts">
-// UPDATED: Todo (task) creation/edit form component
 import { useForm } from '@inertiajs/vue3';
 import { watch } from 'vue';
 
-// UPDATED: Added todo prop for editing
 interface Todo {
     id: number;
     task_name: string;
@@ -16,7 +14,7 @@ interface Todo {
 interface Props {
     todoListId: number;
     show: boolean;
-    todo?: Todo; // UPDATED: Optional todo for editing
+    todo?: Todo;
 }
 
 const props = defineProps<Props>();
@@ -25,7 +23,6 @@ const emit = defineEmits<{
     close: [];
 }>();
 
-// UPDATED: Form state - populate with existing todo if editing
 const form = useForm({
     task_name: props.todo?.task_name || '',
     due_by: props.todo?.due_by || '',
@@ -33,7 +30,6 @@ const form = useForm({
     task_status: props.todo?.task_status || false,
 });
 
-// UPDATED: Watch for todo changes to populate form when editing
 watch(() => props.todo, (newTodo) => {
     if (newTodo) {
         form.task_name = newTodo.task_name;
@@ -45,17 +41,15 @@ watch(() => props.todo, (newTodo) => {
     }
 }, { immediate: true });
 
-// UPDATED: Submit - create or update based on whether todo exists
+
 const submit = () => {
     if (props.todo) {
-        // Update existing todo
         form.put(`/todos/${props.todo.id}`, {
             onSuccess: () => {
                 emit('close');
             },
         });
     } else {
-        // Create new todo
         form.post(`/todolists/${props.todoListId}/todos`, {
             onSuccess: () => {
                 form.reset();
@@ -68,7 +62,8 @@ const submit = () => {
 
 <template>
     <div v-if="show" class="bg-gray-50 p-4 rounded mb-4 border border-gray-200">
-        <!-- UPDATED: Dynamic title based on edit/create mode -->
+
+        <!-- Edit/Add New Task -->
         <h4 class="text-lg font-semibold mb-3">{{ todo ? 'Edit Task' : 'Add New Task' }}</h4>
         <form @submit.prevent="submit">
             <div class="mb-3">
@@ -126,7 +121,6 @@ const submit = () => {
                     :disabled="form.processing"
                     class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition disabled:opacity-50"
                 >
-                    <!-- UPDATED: Dynamic button text based on edit/create mode -->
                     {{ form.processing ? (todo ? 'Updating...' : 'Adding...') : (todo ? 'Update Task' : 'Add Task') }}
                 </button>
             </div>

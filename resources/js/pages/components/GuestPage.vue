@@ -1,15 +1,14 @@
 <script setup lang="ts">
-// NEW: Hero section component for guest users
 import { Link } from '@inertiajs/vue3';
 import Navbar from './Navbar.vue';
 </script>
 
 <template>
-    <!-- Hero Section for Guests -->
     <main class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <Navbar />
         <div class="container mx-auto px-4 py-20">
             <div class="text-center max-w-4xl mx-auto">
+
                 <!-- Hero Content -->
                 <h1 class="text-6xl font-bold text-gray-900 mb-6">
                     Organize Life with
@@ -19,7 +18,6 @@ import Navbar from './Navbar.vue';
                     Use this to-do list app to stay on track with your tasks
                 </p>
 
-                <!-- CTA Buttons -->
                 <div class="flex justify-center gap-4 mb-16">
                     <Link 
                         href="/register" 
