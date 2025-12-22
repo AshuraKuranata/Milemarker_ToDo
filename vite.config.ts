@@ -20,8 +20,13 @@ export default defineConfig({
                 },
             },
         }),
-        wayfinder({
-            formVariants: true,
-        }),
+        // ❌ VERCEL ISSUE: Wayfinder requires PHP during build, but Vercel's Node.js build doesn't have PHP
+        // ✅ FIX: Only enable wayfinder when NOT building for production (i.e., during local dev)
+        // This prevents the "php: command not found" error on Vercel
+        ...(process.env.NODE_ENV !== 'production' ? [
+            wayfinder({
+                formVariants: true,
+            }),
+        ] : []),
     ],
 });

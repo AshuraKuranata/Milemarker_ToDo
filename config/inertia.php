@@ -16,7 +16,9 @@ return [
     */
 
     'ssr' => [
-        'enabled' => true,
+        // ❌ VERCEL ISSUE: SSR requires a separate Node.js server which Vercel doesn't support easily
+        // ✅ FIX: Disable SSR for Vercel deployment (enable only for local dev or dedicated SSR hosting)
+        'enabled' => env('INERTIA_SSR_ENABLED', false),
         'url' => 'http://127.0.0.1:13714',
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
     ],
