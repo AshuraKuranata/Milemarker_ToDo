@@ -1,2 +1,7 @@
 /vendor
-public/index.php
+/node_modules
+/.git
+/storage/*.key
+.env
+.env.*
+!.env.example
