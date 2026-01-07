@@ -21,8 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(UrlGenerator $url): void
     {
         // Force HTTPS URLs in production (Vercel deployment)
-        if (env('APP_ENV') == 'production') {
-            URL::forceScheme('https');
+        if (env('APP_ENV') === 'production') {
+            $url->forceScheme('https');
         }
     }
 }
