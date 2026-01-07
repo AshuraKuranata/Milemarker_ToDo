@@ -127,4 +127,12 @@ When setting up project, specific area for environment variables is required in 
 #### Bug
 Ran into issues with the database management as SQLite is not well-suited for Vercel.  With an agnostic model schema already developed, determined to shift into PostgreSQL server managed by my AWS EC2 instance.  Set up database in EC2 server with security group commands in place for routing requests.
 
-Testing for updates to Vercel in uploading to deploy properly with new configurations.
+Testing for updates to Vercel in uploading to deploy properly with new configurations.  Following research and guidance, I was able to get Vercel set up correctly to read from the PostgreSQL database on EC2.
+
+Another issue I started running into was that the project would error when logging in, registering a new account, or logging out:
+
+```
+Mixed Content: The page at 'https://milemarker-to-do.vercel.app/todolists' was loaded over HTTPS, but requested an insecure XMLHttpRequest endpoint 'http://milemarker-to-do.vercel.app/'. This request has been blocked; the content must be served over HTTPS.
+```
+
+I researched into this and learned that Laravel doesn't automatically route URLs into https, so I needed to implement a middleware to trust the proxy headers from Vercel to detect HTTPS correctly.  This was done by creating a TrustProxies middleware and registering it in the bootstrap/app.php file.  There's a few how-to's that I was able to quickly research in making sure the updates were generated correctly for properly loading page contexts correctly when logging in or out of application.
