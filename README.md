@@ -136,3 +136,5 @@ Mixed Content: The page at 'https://milemarker-to-do.vercel.app/todolists' was l
 ```
 
 I researched into this and learned that Laravel doesn't automatically route URLs into https, so I needed to implement a middleware to trust the proxy headers from Vercel to detect HTTPS correctly.  This was done by creating a TrustProxies middleware and registering it in the bootstrap/app.php file.  There's a few how-to's that I was able to quickly research in making sure the updates were generated correctly for properly loading page contexts correctly when logging in or out of application.
+
+Once updated, I was able to get this functionally running with the changes made so that the application now runs successfully through Vercel in https and changed the database to PostgreSQL through an EC2 instance as Vercel is not well equipped for SQLite.
