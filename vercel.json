@@ -1,6 +1,6 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "buildCommand": "npm run build && composer install --optimize-autoloader --no-dev",
+    "buildCommand": "npm run build",
     "outputDirectory": "public",
     "framework": null,
     "functions": {

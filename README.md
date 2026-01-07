@@ -112,3 +112,19 @@ Some improvements that I can see to build into the project:
 * Automated tests for development
 
 It was a challenge to focus on learing two new languages via Laravel and Vue.js, but I'm grateful for the opportunity to focus on building a full-stack application using new technologies that I've had little experience utilizing before.  I hope to continue building and developing and working on this project is giving me inspiration to use these prompts and ideas to consider building other versions and variations to expand and improve on this idea.
+
+## Change Log
+
+### 1.6.2026
+Request to change the deployment to be https secure utilizing Vercel (https://vercel.com/) used by the team.
+
+Researched into deployment and found that it would be a relatively simple process to deploy to Vercel given the Laravel framework and the Vercel support for Laravel.
+
+This required implementing a vercel.json file with commands to run in Vercel, so researching and finding the codes required to handle deployment into Vercel.
+
+When setting up project, specific area for environment variables is required in site deployment for git project connected.  Quick copy paste fixed.
+
+#### Bug
+Ran into issues with the database management as SQLite is not well-suited for Vercel.  With an agnostic model schema already developed, determined to shift into PostgreSQL server managed by my AWS EC2 instance.  Set up database in EC2 server with security group commands in place for routing requests.
+
+Testing for updates to Vercel in uploading to deploy properly with new configurations.
